@@ -4,6 +4,7 @@ import { SlotMachineComponent } from './components/slot-machine/slot-machine.com
 
 const routes: Routes = [
   { path: '', component: GameListComponent }, // Home Page (Game List)
+  { path: 'games', component: GameListComponent },
   { path: 'slot-machine', component: SlotMachineComponent } // Slot Machine Page
 ];
 
