@@ -1,0 +1,10 @@
+.winner-dialog {
+    color: green;
+    font-weight: bold;
+}
+  
+.loser-dialog {
+    color: red;
+    font-weight: bold;
+}
+  

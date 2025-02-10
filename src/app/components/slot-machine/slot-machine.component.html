@@ -1,0 +1,53 @@
+<div class="container text-center mt-4">
+  <div class="row">
+    <!-- Slot Machine Section -->
+    <div class="col-md-6 d-flex flex-column">
+      <mat-card class="mb-4 py-3 flex-grow-1 slot-machine-card">
+        <h2>🎰 Slot Machine</h2>
+        <p class="lead">Balance: <span class="badge bg-primary">{{ balance }} coins</span></p>
+
+        <!-- Slot Reels with Animation -->
+        <div class="d-flex justify-content-center reels-container">
+          <div class="reel" *ngFor="let item of result; let i = index">
+            <div class="slot-animation" [ngClass]="{'spinning': isSpinning}">
+              <img class="reel-image" [src]="symbolImages[item]" [alt]="item">
+            </div>
+          </div>
+        </div>
+
+        <!-- Spin Button -->
+        <div class="d-flex justify-content-center">
+          <button mat-flat-button color="primary" class="btn btn-danger mt-3"
+            (click)="spin()" [disabled]="isSpinning || balance <= 0">
+            Spin
+          </button>
+        </div>
+
+        <!-- Message Display -->
+        <!--p class="mt-3">{{ message }}</p-->
+      </mat-card>
+    </div>
+
+    <!-- Currency Converter Section -->
+    <div class="col-md-6 d-flex flex-column">
+      <mat-card class="mb-4 py-3 flex-grow-1 converter-card">
+        <div class="currency-converter d-flex flex-column align-items-center">
+          <h3>💱 Convert Balance</h3>
+          <div class="d-flex align-items-center">
+            <div class="d-flex flex-column">
+              <input type="number" class="form-control mb-2"
+                [(ngModel)]="convertAmount" [max]="balance" [min]="1" placeholder="Enter amount">
+              <select class="form-select" [(ngModel)]="selectedCurrency">
+                <option *ngFor="let currency of availableCurrencies" [value]="currency">{{ currency }}</option>
+              </select>
+            </div>
+            <button mat-flat-button class="btn btn-success ms-2" (click)="convert()">Convert</button>
+          </div>
+          <p class="mt-3" *ngIf="convertedBalance !== null">
+            Converted Amount: <span class="badge bg-info">{{ convertedBalance }} {{ selectedCurrency }}</span>
+          </p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
